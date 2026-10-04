@@ -225,14 +225,111 @@
   .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
   .faq-a p{padding:0 24px 20px;color:var(--muted);font-size:14.5px;}
 
-  /* PARTNERS */
-  .partners{background:var(--navy);color:var(--cream);text-align:center;}
-  .partners .section-head h2{color:var(--gold-light);}
-  .partner-row{display:flex;justify-content:center;gap:50px;flex-wrap:wrap;margin-bottom:50px;}
-  .partner-row:last-child{margin-bottom:0;}
-  .partner-logo{
-    width:130px;height:70px;border:1px solid rgba(223,162,46,.3);border-radius:10px;
-    display:flex;align-items:center;justify-content:center;font-size:12px;color:#9fb0c4;letter-spacing:.05em;
+  /* SPONSORS — dibuat mengikuti referensi screenshot */
+  .partners{
+    background:#fff;
+    color:#333;
+    text-align:center;
+    padding:92px 0 110px;
+  }
+  .partners .section-head{
+    max-width:1220px;
+    margin:0 auto 70px;
+    display:flex;
+    align-items:center;
+    gap:24px;
+  }
+  .partners .section-head::before,
+  .partners .section-head::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:repeating-linear-gradient(
+      90deg,
+      rgba(35,35,35,.10) 0 2px,
+      transparent 2px 5px
+    );
+  }
+  .partners .section-head .eyebrow{display:none;}
+  .partners .section-head h2{
+    margin:0;
+    color:#444;
+    font-family:'Inter',sans-serif;
+    font-size:clamp(28px,3vw,40px);
+    font-weight:600;
+    line-height:1;
+    white-space:nowrap;
+  }
+  .partners .section-head h2::after{display:none;}
+  .partner-row{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    align-items:center;
+    gap:42px;
+    max-width:1260px;
+    margin:0 auto;
+  }
+  .institution-row{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    align-items:center;
+    gap:18px;
+    max-width:900px;
+    margin:0 auto 92px;
+  }
+  .institution-logo-img{
+    width:100%;
+    height:130px;
+    padding:5px;
+    border:0;
+    border-radius:0;
+    background:#fff;
+    object-fit:contain;
+    display:block;
+    filter:none;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .institution-logo-img:hover{
+    transform:translateY(-4px);
+    opacity:.88;
+  }
+  .partner-logo-img{
+    width:100%;
+    height:125px;
+    padding:10px;
+    border:0;
+    border-radius:0;
+    background:#fff;
+    object-fit:contain;
+    display:block;
+    filter:none;
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .partner-logo-img:hover{
+    transform:translateY(-4px);
+    opacity:.88;
+  }
+  .partner-logo{display:none;}
+
+  @media(max-width:900px){
+    .partners .section-head{margin-bottom:48px;gap:16px;}
+    .partners .section-head h2{font-size:28px;}
+    .partner-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 22px;}
+    .institution-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 6px;margin-bottom:70px;}
+    .partner-logo-img{height:105px;}
+    .institution-logo-img{height:110px;padding:4px;}
+  }
+
+  @media(max-width:560px){
+    .partners{padding:72px 0 80px;}
+    .partners .section-head::before,
+    .partners .section-head::after{display:none;}
+    .partners .section-head{justify-content:center;margin-bottom:40px;}
+    .partners .section-head h2{font-size:25px;}
+    .partner-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+    .institution-row{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-bottom:58px;}
+    .partner-logo-img{height:90px;padding:8px;}
+    .institution-logo-img{height:92px;padding:4px;}
   }
 
   /* FOOTER */
@@ -317,6 +414,94 @@
     .nav-links,.nav-cta{display:none;}
     .menu-toggle{display:block;}
   }
+
+  /* ===== v2: penyempurnaan UI + slideshow hero ===== */
+  header{background:linear-gradient(180deg,rgba(8,21,39,.82),rgba(8,21,39,0));backdrop-filter:none;border-bottom-color:transparent;}
+  header.scrolled{backdrop-filter:blur(10px);border-bottom-color:rgba(223,162,46,.18);}
+
+  .hero{background:var(--navy-deep);padding:150px 24px 90px;}
+  .hero-bg,.hero-shade{position:absolute;inset:0;z-index:0;}
+  .hero-shade{background:
+    linear-gradient(180deg,rgba(8,21,39,.84) 0%,rgba(8,21,39,.4) 40%,rgba(8,21,39,.92) 100%),
+    radial-gradient(70% 60% at 50% 45%,rgba(8,21,39,.6),transparent);}
+  .hero::before{z-index:1;}
+  .hero-inner{z-index:2;}
+  .hero h1{text-shadow:0 6px 34px rgba(0,0,0,.5);}
+  .hero .tagline{text-shadow:0 2px 14px rgba(0,0,0,.5);}
+  .hero .btn{padding:14px 30px;font-size:14px;}
+  .hero .btn-ghost{background:rgba(250,246,236,.08);backdrop-filter:blur(6px);}
+
+  .slider-ui{position:absolute;left:0;right:0;bottom:28px;z-index:3;display:flex;align-items:center;justify-content:center;gap:18px;padding:0 24px;}
+  .slider-ui[hidden]{display:none;}
+  .s-btn{width:42px;height:42px;flex-shrink:0;border-radius:50%;border:1px solid rgba(250,246,236,.35);background:rgba(8,21,39,.45);color:var(--cream);font-size:22px;line-height:1;cursor:pointer;backdrop-filter:blur(6px);transition:background .2s,border-color .2s;}
+  .s-btn:hover{background:rgba(223,162,46,.25);border-color:var(--gold);}
+  .s-meta{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0;}
+  .s-cap{font-size:12.5px;color:#dce4ee;text-align:center;text-shadow:0 1px 8px rgba(0,0,0,.6);}
+  .s-dots{display:flex;gap:6px;}
+  .s-dot{position:relative;width:30px;height:18px;padding:0;border:0;background:none;cursor:pointer;}
+  .s-dot::before,.s-dot i{content:"";position:absolute;left:0;right:0;top:7px;height:4px;border-radius:4px;}
+  .s-dot::before{background:rgba(250,246,236,.3);}
+  .s-dot i{background:var(--gold);transform:scaleX(0);transform-origin:left;}
+  .s-dot.done i{transform:scaleX(1);}
+  .s-dot.active i{animation:slidefill var(--slide-ms,6000ms) linear forwards;}
+  @keyframes slidefill{to{transform:scaleX(1);}}
+  .slider-ui.paused .s-dot.active i{animation-play-state:paused;}
+  .slider-ui.single .s-btn,.slider-ui.single .s-dots{display:none;}
+
+  .section-head h2::after{content:"";display:block;width:48px;height:2px;background:var(--gold);margin:16px auto 0;}
+  .about-narasi{text-align:left;}
+  .about-grid{align-items:start;}
+  .about-figure{position:sticky;top:100px;background:linear-gradient(160deg,var(--navy),var(--navy-deep));border-color:rgba(223,162,46,.3);box-shadow:0 22px 46px rgba(14,35,64,.22);}
+  .about-figure h3{color:var(--gold-light);}
+  .about-figure li{color:#dce4ee;}
+  .info-grid{grid-template-columns:repeat(2,minmax(0,1fr));max-width:820px;margin:0 auto;}
+  .partner-logo{background:rgba(250,246,236,.04);}
+
+  @media(max-width:860px){
+    .about-figure{position:static;}
+    .info-grid{grid-template-columns:1fr;}
+  }
+  @media(max-width:600px){
+    section{padding:72px 0;}
+    .s-btn{width:36px;height:36px;}
+    .s-dot{width:22px;}
+  }
+
+
+  /* ===== Layer 2 hero: 3 foto bergeser di atas background ===== */
+  .hero{background:radial-gradient(120% 90% at 50% 0%,#16345c 0%,var(--navy) 45%,var(--navy-deep) 100%);}
+  .hero-bg{overflow:hidden;}
+  .hero-strip{display:flex;height:100%;transition:transform .8s cubic-bezier(.65,0,.35,1);will-change:transform;}
+  .hero-slide{
+    flex:0 0 auto;height:100%;width:calc(100% / var(--hero-total, 1));
+    object-fit:cover;object-position:center;display:block;
+    box-shadow:inset -3px 0 0 var(--navy-deep);
+  }
+
+  /* ===== Logo sponsor & panel admin ===== */
+  .partner-logo.has-img{background:#fff;border-color:rgba(255,255,255,.4);padding:8px;}
+  .partner-logo img{max-width:100%;max-height:100%;object-fit:contain;}
+  #adminPanel{position:fixed;right:16px;bottom:16px;z-index:1200;width:min(380px,calc(100vw - 32px));max-height:82vh;overflow:auto;
+    background:var(--navy-deep);color:var(--cream);border:1px solid rgba(223,162,46,.4);border-radius:var(--radius);padding:18px;
+    box-shadow:0 24px 60px rgba(4,12,24,.55);font-size:13.5px;line-height:1.5;}
+  #adminPanel[hidden]{display:none;}
+  #adminPanel h4{font-family:'Inter',sans-serif;color:var(--gold-light);font-size:14px;margin:18px 0 8px;}
+  .ad-head{display:flex;justify-content:space-between;align-items:center;}
+  .ad-head strong{font-size:15px;}
+  .ad-x{background:none;border:0;color:var(--cream);font-size:16px;cursor:pointer;width:32px;height:32px;}
+  .ad-note{color:#aab6c6;font-size:12.5px;margin-top:4px;}
+  .ad-drop{position:relative;display:block;border:1.5px dashed rgba(223,162,46,.5);border-radius:10px;padding:16px;text-align:center;cursor:pointer;color:#dce4ee;transition:background .2s,border-color .2s;}
+  .ad-drop:hover,.ad-drop.over,.ad-drop:focus-within{background:rgba(223,162,46,.1);border-color:var(--gold);}
+  .ad-drop input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+  .ad-list{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+  .ad-item{display:flex;align-items:center;gap:10px;background:rgba(250,246,236,.06);border-radius:8px;padding:6px 8px;}
+  .ad-item img,.ad-item .ad-ph{width:56px;height:38px;object-fit:cover;border-radius:5px;flex-shrink:0;background:rgba(250,246,236,.1);}
+  .ad-item img.logo{object-fit:contain;background:#fff;}
+  .ad-item span{flex:1;min-width:0;}
+  .ad-item input[type=text]{flex:1;min-width:0;padding:6px 8px;border-radius:6px;border:1px solid rgba(250,246,236,.2);background:rgba(250,246,236,.06);color:var(--cream);font:inherit;}
+  .ad-item button{background:none;border:0;color:#e9a08a;cursor:pointer;width:30px;height:30px;font-size:15px;flex-shrink:0;}
+  .ad-empty{color:#aab6c6;font-size:12.5px;}
+  #adminPanel .btn{width:100%;margin-top:18px;text-align:center;}
 </style>
 </head>
 <body>
@@ -356,7 +541,9 @@
   </nav>
 </header>
 
-<section class="hero">
+<section class="hero" id="beranda">
+  <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+  <div class="hero-shade" aria-hidden="true"></div>
   <div class="hero-inner">
     <img class="badge" src="logo teco 1.png" alt="Logo Wings of Unity">
     <div class="eyebrow">Textile Competition Vol. 4</div>
@@ -377,15 +564,15 @@
     </div>
     <div class="about-grid">
       <div class="about-narasi">
-        <p>Textile Competition Vol. 4 adalah program kerja Kementerian Luar Negeri BEM KM Politeknik STTT Bandung, berupa perlombaan baris-berbaris (LKBB) dan ruang kreasi paskibra (Rukibra) yang diikuti oleh siswa/i SMP/MTs dan SMA/SMK/MA se-Jawa Barat.</p>
-        <p>Tema "Wings of Unity" merepresentasikan setiap peserta sebagai sayap-sayap yang berbeda bentuk dan asal, namun bergerak dalam satu irama yang sama. Sayap melambangkan kebebasan berekspresi dan semangat setiap pasukan untuk menunjukkan karakter khasnya, sementara unity menjadi pengingat bahwa kekuatan sesungguhnya lahir dari kekompakan, disiplin, dan kerja sama tim.</p>
+        <p>Textile Competition Vol. 4 adalah program kerja Kementerian Luar Negeri BEM KM Politeknik STTT Bandung, berupa perlombaan, ruang kreasi paskibra (Rukibra) yang diikuti oleh siswa/i SD,SMP/MTsSMA/SMK/MA se Jawa Barat.</p>
+        <p>Tema "Wings of Unity" merepresentasikan setiap peserta sebagai sayap sayap yang berbeda bentuk dan asal, namun bergerak dalam satu irama yang sama. Sayap melambangkan kebebasan berekspresi dan semangat setiap pasukan untuk menunjukkan karakter khasnya, sementara unity menjadi pengingat bahwa kekuatan sesungguhnya lahir dari kekompakan, disiplin, dan kerja sama tim.</p>
         <p>Melalui setiap formasi, aba-aba, dan variasi kreasi yang ditampilkan, peserta diajak untuk membuktikan bahwa perbedaan latar belakang bukan penghalang untuk melangkah selaras. Wings of Unity hadir sebagai panggung bagi generasi muda untuk mengasah presisi, kepercayaan diri, dan solidaritas menuju masa depan yang gemilang.</p>
       </div>
       <div class="about-figure">
         <h3>Sekilas acara</h3>
         <ul>
-          <li><span>—</span> Kategori LKBB &amp; Rukibra, tingkat SMP/MTs dan SMA/SMK/MA</li>
-          <li><span>—</span> Cakupan peserta se-Jawa Barat</li>
+          <li><span>—</span> Rukibra, tingkat SD, SMP/MTs dan SMA/SMK/MA</li>
+          <li><span>—</span> Cakupan peserta se Jawa Barat</li>
           <li><span>—</span> Juri dari unsur profesional &amp; TNI</li>
           <li><span>—</span> Lokasi: Politeknik STTT Bandung</li>
           <li><span>—</span> Fasilitas penginapan untuk peserta luar kota</li>
@@ -407,7 +594,7 @@
       <div class="t-item" data-reveal><div class="date">Gelombang 1</div><h4>Pembukaan pendaftaran</h4><p>Pendaftaran awal dibuka dengan harga spesial early bird.</p></div>
       <div class="t-item" data-reveal><div class="date">Gelombang 2</div><h4>Perpanjangan pendaftaran</h4><p>Kesempatan kedua bagi tim yang belum mendaftar di gelombang pertama.</p></div>
       <div class="t-item" data-reveal><div class="date">Technical meeting</div><h4>Pertemuan teknis</h4><p>Penjelasan rinci teknis lomba, penilaian, dan tata tertib peserta.</p></div>
-      <div class="t-item" data-reveal><div class="date">Hari pelaksanaan</div><h4>Hari-H perlombaan</h4><p>Penampilan seluruh pasukan di kategori LKBB dan Rukibra.</p></div>
+      <div class="t-item" data-reveal><div class="date">Hari pelaksanaan</div><h4>Hari H perlombaan</h4><p>Penampilan seluruh pasukan di kategori Rukibra.</p></div>
       <div class="t-item" data-reveal><div class="date">Penutupan</div><h4>Pengumuman pemenang</h4><p>Penyerahan piala, uang pembinaan pelatih, dan sertifikat peserta.</p></div>
     </div>
   </div>
@@ -420,11 +607,6 @@
       <h2>Informasi</h2>
     </div>
     <div class="info-grid">
-      <div class="info-card">
-        <h3>Handbook LKBB</h3>
-        <p>Petunjuk teknis pelaksanaan lomba baris-berbaris dan ketentuan penilaian.</p>
-        <div class="meta"><span>PDF</span><a href="handbook-lkbb.pdf" download class="js-download" data-label="Handbook LKBB">Unduh →</a></div>
-      </div>
       <div class="info-card">
         <h3>Handbook Rukibra</h3>
         <p>Petunjuk teknis ruang kreasi paskibra beserta kriteria juri.</p>
@@ -484,16 +666,16 @@
 
 <section class="partners" data-reveal>
   <div class="wrap">
-    <div class="section-head"><span class="eyebrow">Kolaborasi</span><h2>Organized &amp; supported by</h2></div>
-    <div class="partner-row">
-      <div class="partner-logo">BEM KM POLITEKNIK STTT BANDUNG</div>
-      <div class="partner-logo">Kemenlu BEM KM STTT</div>
+    <div class="section-head"><span class="eyebrow">Institusi</span><h2>Organized by</h2></div>
+    <div class="institution-row" aria-label="Institusi penyelenggara">
+      <img class="institution-logo-img" src="STTT.png" alt="Logo institusi 1">
+      <img class="institution-logo-img" src="bem.png" alt="Logo institusi 2">
+      <img class="institution-logo-img" src="menlu.png" alt="Logo institusi 3">
+      <img class="institution-logo-img" src="logo teco 1.png" alt="Logo institusi 4">
     </div>
-    <div class="partner-row">
-      <div class="partner-logo">Sponsor 1</div>
-      <div class="partner-logo">Sponsor 2</div>
-      <div class="partner-logo">Sponsor 3</div>
-    </div>
+
+    <div class="section-head"><span class="eyebrow">Sponsor</span><h2>Our Sponsors</h2></div>
+    <div class="partner-row" id="sponsorRow" aria-label="Daftar sponsor"></div>
   </div>
 </section>
 
@@ -506,8 +688,7 @@
       </div>
       <div>
         <h4>Narahubung</h4>
-        <a href="https://wa.me/089647823680">0851-xxxx-xxxx (LKBB)</a>
-        <a href="https://wa.me/62838XXXXXXX">0838-xxxx-xxxx (Rukibra)</a>
+        <a href="https://wa.me/0888-0208-2247">0888-0208-2247 (Rukibra)</a>
       </div>
       <div>
         <h4>Media sosial</h4>
@@ -537,10 +718,9 @@
           <label for="p-kategori">Kategori lomba</label>
           <select id="p-kategori" name="kategori" required>
             <option value="">Pilih kategori</option>
-            <option value="LKBB">LKBB</option>
             <option value="Rukibra">Rukibra</option>
           </select>
-          <div class="field-error">Pilih salah satu kategori.</div>
+          <div class="field-error">Pilih kategori.</div>
         </div>
         <div class="field">
           <label for="p-pj">Nama penanggung jawab</label>
@@ -575,7 +755,7 @@
       <form id="form-pelunasan" novalidate>
         <div class="field">
           <label for="l-kode">Kode / ID pendaftaran</label>
-          <input id="l-kode" name="kode" type="text" required placeholder="cth. TC4-0032">
+          <input id="l-kode" name="kode" type="text" required placeholder="cth. RUKIBRA-0012">
           <div class="field-error">Kode pendaftaran wajib diisi.</div>
         </div>
         <div class="field">
@@ -605,7 +785,6 @@
 </div>
 
 <div class="toast" id="toast"></div>
-
 <script>
   document.querySelectorAll('.faq-item').forEach(item=>{
     const q = item.querySelector('.faq-q');
@@ -686,7 +865,66 @@
   });
 
   /* ===== WhatsApp contact routing per kategori ===== */
-  const WA_NUMBERS = { LKBB:'62851XXXXXXX', Rukibra:'62838XXXXXXX', default:'62851XXXXXXX' };
+  const WA_NUMBERS = { Rukibra:'6281214550036', default:'6281214550036' };
+
+  /*
+   * WHATSAPP API CONFIG
+   * Front-end ini tetap memakai wa.me sebagai fallback yang aman.
+   * Untuk WhatsApp Cloud API/provider, isi endpoint di server Anda.
+   * Jangan pernah menaruh access token WhatsApp di file HTML/client-side.
+   */
+  /* Konfigurasi API: endpoint backend harus menyimpan access token/provider secret di server. */
+  const WHATSAPP_API = {
+    enabled: false,
+    endpoint: '',
+    /*
+     * mode:
+     * - 'link'     : buka WhatsApp dengan pesan terisi (fallback/default)
+     * - 'api'      : kirim melalui backend WhatsApp API
+     */
+    mode: 'link'
+  };
+
+  function normalizeWaNumber(value){
+    let n = String(value || '').replace(/\\D/g, '');
+    if(n.startsWith('0')) n = '62' + n.slice(1);
+    if(n.startsWith('8')) n = '62' + n;
+    return n;
+  }
+
+  function buildApiPayload(to, message, type){
+    return {
+      to: normalizeWaNumber(to),
+      message,
+      type,
+      source: 'wings-of-unity-web',
+      timestamp: new Date().toISOString()
+    };
+  }
+
+  async function sendWhatsAppApi(to, message, type = 'notification') {
+    if(!WHATSAPP_API.enabled || WHATSAPP_API.mode !== 'api' || !WHATSAPP_API.endpoint) {
+      return false;
+    }
+    try{
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10000);
+
+      const res = await fetch(WHATSAPP_API.endpoint, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(buildApiPayload(to, message, type)),
+        signal: controller.signal
+      });
+
+      clearTimeout(timeout);
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
+      return true;
+    }catch(err){
+      console.warn('WhatsApp API gagal, menggunakan fallback wa.me.', err);
+      return false;
+    }
+  }
 
   function setFieldError(field, hasError){
     field.classList.toggle('invalid', hasError);
@@ -701,7 +939,7 @@
     });
     return valid;
   }
-  function renderSummary(modal, title, rows, waNumber, waText){
+  function renderSummary(modal, title, rows, waNumber, waText, messageType = 'notification'){
     const formWrap = modal.querySelector('.modal-body-form');
     const success = modal.querySelector('.modal-success');
     formWrap.style.display = 'none';
@@ -717,6 +955,21 @@
          href="https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}">Lanjutkan ke WhatsApp →</a>
       <button class="btn btn-ghost" type="button" style="width:100%;margin-top:10px;" data-reset>Isi formulir lain</button>
     `;
+    success.querySelector('[data-wa-send]').addEventListener('click', async e=>{
+      if(!WHATSAPP_API.enabled || !WHATSAPP_API.endpoint) return;
+      e.preventDefault();
+      const btn = e.currentTarget;
+      btn.textContent = 'Mengirim...';
+      const sent = await sendWhatsAppApi(waNumber, waText, messageType);
+      if(sent){
+        btn.textContent = 'Pesan terkirim ✓';
+        btn.removeAttribute('target');
+        btn.removeAttribute('href');
+      }else{
+        btn.textContent = 'Lanjutkan ke WhatsApp →';
+        window.open(`https://wa.me/${normalizeWaNumber(waNumber)}?text=${encodeURIComponent(waText)}`, '_blank', 'noopener');
+      }
+    });
     success.querySelector('[data-reset]').addEventListener('click', ()=>{
       formWrap.style.display = '';
       success.hidden = true;
@@ -729,12 +982,12 @@
     e.preventDefault();
     if(!validateForm(formPendaftaran)) return;
     const d = Object.fromEntries(new FormData(formPendaftaran).entries());
-    const waNumber = WA_NUMBERS[d.kategori] || WA_NUMBERS.default;
-    const waText = `Halo panitia Wings of Unity, saya ingin mendaftarkan tim.\nSekolah: ${d.sekolah}\nKategori: ${d.kategori}\nPenanggung jawab: ${d.pj}\nWhatsApp: ${d.wa}\nJumlah anggota: ${d.jumlah}`;
+    const waNumber = normalizeWaNumber(WA_NUMBERS[d.kategori] || WA_NUMBERS.default);
+    const waText = `*PENDAFTARAN Textile Competition Vol. 4*\n\nHalo Panitia Wings of Unity, saya ingin melakukan pendaftaran tim.\n\n*DATA PENDAFTARAN*\n• Sekolah: ${d.sekolah}\n• Kategori: ${d.kategori}\n• Penanggung jawab: ${d.pj}\n• WhatsApp: ${d.wa}\n• Jumlah anggota: ${d.jumlah}\n\nMohon informasi mengenai langkah selanjutnya. Terima kasih.`;
     renderSummary(modals.pendaftaran, 'Pendaftaran siap dikirim', [
       ['Sekolah', d.sekolah], ['Kategori', d.kategori], ['Penanggung jawab', d.pj],
       ['WhatsApp', d.wa], ['Jumlah anggota', d.jumlah]
-    ], waNumber, waText);
+    ], waNumber, waText, 'pendaftaran');
   });
 
   const formPelunasan = document.getElementById('form-pelunasan');
@@ -742,11 +995,11 @@
     e.preventDefault();
     if(!validateForm(formPelunasan)) return;
     const d = Object.fromEntries(new FormData(formPelunasan).entries());
-    const waText = `Halo panitia Wings of Unity, saya ingin konfirmasi pelunasan.\nKode pendaftaran: ${d.kode}\nSekolah: ${d.sekolah}\nNominal transfer: Rp${d.nominal}\nPengirim: ${d.bank}\nCatatan: ${d.catatan || '-'}\n(Bukti transfer akan saya lampirkan di chat ini)`;
+    const waText = `*PELUNASAN Textile Competition Vol. 4*\n\nHalo Panitia Wings of Unity, saya ingin mengonfirmasi pelunasan biaya pendaftaran.\n\n*DATA PEMBAYARAN*\n• Kode pendaftaran: ${d.kode}\n• Sekolah: ${d.sekolah}\n• Nominal transfer: Rp${d.nominal}\n• Pengirim: ${d.bank}\n• Catatan: ${d.catatan || '-'}\n\n*Bukti transfer akan saya lampirkan pada chat ini.*\nMohon dilakukan verifikasi. Terima kasih.`;
     renderSummary(modals.pelunasan, 'Konfirmasi siap dikirim', [
       ['Kode', d.kode], ['Sekolah', d.sekolah], ['Nominal', 'Rp' + d.nominal],
       ['Pengirim', d.bank]
-    ], WA_NUMBERS.default, waText);
+    ], normalizeWaNumber(WA_NUMBERS.default), waText, 'pelunasan');
   });
 
   /* ===== Download feedback ===== */
@@ -755,6 +1008,202 @@
       showToast(`Mengunduh ${a.getAttribute('data-label')}…`);
     });
   });
+
+  /* ===== Data situs: foto background & logo sponsor ===== */
+  const siteData = {
+    photos: [
+      "foto-wings-1.jpeg",
+      "foto-wings-2.jpeg"
+    ],
+    sponsors: [
+      { name: "Shopee", src: "sponsor-shopee.png" },
+      { name: "Executive", src: "sponsor-executive.png" },
+      { name: "Hugo Boss", src: "sponsor-boss.png" },
+      { name: "Just Brands", src: "sponsor-just-brands.png" },
+      { name: "Geulis", src: "sponsor-geulis.png" },
+      { name: "Athlon", src: "sponsor-athlon.png" }
+    ]
+  };
+  const SLIDE_MS = 3000;   // jeda antar geseran (ms), makin kecil makin cepat
+  const VISIBLE = 3;       // jumlah foto yang tampil bersamaan
+  const byId = id => document.getElementById(id);
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  /* ----- Hero: 3 foto bergeser otomatis ----- */
+  let heroTimer, heroRun = 0;
+  async function renderHero(){
+    const run = ++heroRun;
+    clearInterval(heroTimer);
+    const bg = byId('heroBg'); bg.innerHTML = '';
+    const loaded = await Promise.all(siteData.photos.map(src=>new Promise(res=>{
+      const im = new Image(); im.onload = ()=>res(src); im.onerror = ()=>res(null); im.src = src;
+    })));
+    if(run !== heroRun) return;
+    const photos = loaded.filter(Boolean);
+    if(!photos.length) return;   // tanpa foto, hero tetap tampil dengan background navy
+
+    let list = photos.slice();
+    while(list.length < VISIBLE) list = list.concat(photos);
+    const L = list.length, total = L + VISIBLE;
+    const strip = document.createElement('div');
+    strip.className = 'hero-strip';
+    strip.style.width = `${total * 100 / VISIBLE}%`;
+    strip.style.setProperty('--hero-total', total);
+    list.concat(list.slice(0, VISIBLE)).forEach((src, i)=>{
+      const im = document.createElement('img');
+      im.className = 'hero-slide';
+      im.src = src;
+      im.alt = `Foto Wings of Unity ${i + 1}`;
+      im.loading = i < VISIBLE ? 'eager' : 'lazy';
+      strip.appendChild(im);
+    });
+    bg.appendChild(strip);
+
+    let pos = 0;
+    const setPos = (p, anim)=>{
+      strip.style.transition = anim ? '' : 'none';
+      strip.style.transform = `translateX(-${p * 100 / total}%)`;
+      pos = p;
+    };
+    strip.addEventListener('transitionend', e=>{
+      if(e.target === strip && pos === L) setPos(0, false);
+    });
+    if(photos.length < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    heroTimer = setInterval(()=>{
+      if(document.hidden) return;
+      if(pos === L){ setPos(0, false); void strip.offsetWidth; }
+      setPos(pos + 1, true);
+    }, SLIDE_MS);
+  }
+
+  /* ----- Sponsor ----- */
+  function renderSponsors(){
+    const row = byId('sponsorRow'); row.innerHTML = '';
+    row.style.display = siteData.sponsors.length ? '' : 'none';
+    siteData.sponsors.forEach(sp=>{
+      if(sp.src){
+        const im = document.createElement('img');
+        im.className = 'partner-logo-img';
+        im.src = sp.src;
+        im.alt = sp.name || 'Logo sponsor';
+        im.title = sp.name || 'Sponsor';
+        row.appendChild(im);
+      } else {
+        const d = document.createElement('div');
+        d.className = 'partner-logo';
+        d.textContent = sp.name;
+        row.appendChild(d);
+      }
+    });
+  }
+
+  /* ----- Panel admin: buka dengan index.html#admin ----- */
+  const readFile = f => new Promise((res, rej)=>{ const r = new FileReader(); r.onload = ()=>res(r.result); r.onerror = rej; r.readAsDataURL(f); });
+  async function toDataUrl(file, maxW, keepAlpha){
+    const url = await readFile(file);
+    if(file.type === 'image/svg+xml') return url;
+    const img = await new Promise((res, rej)=>{ const i = new Image(); i.onload = ()=>res(i); i.onerror = rej; i.src = url; });
+    const k = Math.min(1, maxW / img.naturalWidth);
+    const c = document.createElement('canvas');
+    c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+    return keepAlpha ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', .85);
+  }
+
+  function downloadHtml(){
+    const c = document.documentElement.cloneNode(true);
+    c.querySelector('#adminPanel')?.remove();
+    c.querySelector('#site-data').textContent = JSON.stringify(siteData).replace(/</g, '\\u003c');
+    c.querySelector('#heroBg').innerHTML = '';
+    c.querySelector('#sponsorRow').innerHTML = '';
+    c.querySelectorAll('.in,.scrolled,.open,.mobile-open,.active,.show').forEach(el=>el.classList.remove('in','scrolled','open','mobile-open','active','show'));
+    c.querySelectorAll('.faq-a').forEach(a=>a.style.maxHeight = '');
+    c.querySelectorAll('.modal-success').forEach(m=>{ m.hidden = true; m.innerHTML = ''; });
+    c.querySelectorAll('.modal-body-form').forEach(m=>m.style.display = '');
+    c.querySelector('body').style.overflow = '';
+    const blob = new Blob(['<!DOCTYPE html>\n' + c.outerHTML], {type:'text/html'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
+    showToast('File index.html baru diunduh. Unggah ke hosting untuk menerapkannya.');
+  }
+
+  function initAdmin(){
+    const panel = document.createElement('aside');
+    panel.id = 'adminPanel'; panel.setAttribute('aria-label', 'Panel kelola gambar');
+    panel.innerHTML = `
+      <div class="ad-head"><strong>Kelola gambar</strong><button type="button" class="ad-x" aria-label="Tutup panel">✕</button></div>
+      <p class="ad-note">Perubahan langsung terlihat di sini. Agar tampil untuk semua pengunjung, unduh file baru lalu unggah ke hosting.</p>
+      <h4>Foto background</h4>
+      <label class="ad-drop" id="dropPhotos">Pilih atau seret foto ke sini<input type="file" id="inPhotos" accept="image/*" multiple></label>
+      <div class="ad-list" id="listPhotos"></div>
+      <h4>Logo sponsor</h4>
+      <label class="ad-drop" id="dropSponsors">Pilih atau seret logo ke sini<input type="file" id="inSponsors" accept="image/*" multiple></label>
+      <div class="ad-list" id="listSponsors"></div>
+      <button class="btn btn-solid" type="button" id="adDownload">Unduh index.html baru</button>`;
+    document.body.appendChild(panel);
+
+    function renderLists(){
+      byId('listPhotos').innerHTML = siteData.photos.map((src, i)=>
+        `<div class="ad-item"><img src="${src}" alt=""><span>Foto ${i+1}</span><button type="button" data-rm-photo="${i}" aria-label="Hapus foto ${i+1}">✕</button></div>`
+      ).join('') || '<p class="ad-empty">Belum ada foto.</p>';
+      byId('listSponsors').innerHTML = siteData.sponsors.map((sp, i)=>
+        `<div class="ad-item">${sp.src ? `<img class="logo" src="${sp.src}" alt="">` : '<div class="ad-ph"></div>'}<input type="text" value="${esc(sp.name)}" data-name="${i}" aria-label="Nama sponsor ${i+1}"><button type="button" data-rm-sp="${i}" aria-label="Hapus ${esc(sp.name)}">✕</button></div>`
+      ).join('') || '<p class="ad-empty">Belum ada sponsor.</p>';
+    }
+    function refresh(kind){
+      if(kind === 'photos') renderHero(); else renderSponsors();
+      renderLists();
+    }
+    async function addFiles(fileList, kind){
+      const files = [...fileList].filter(f=>f.type.startsWith('image/'));
+      if(!files.length){ showToast('Pilih file gambar (JPG, PNG, WebP, atau SVG).'); return; }
+      for(const f of files){
+        try{
+          if(kind === 'photos'){
+            siteData.photos.push(await toDataUrl(f, 1600, false));
+          } else {
+            const src = await toDataUrl(f, 400, true);
+            const name = f.name.replace(/\.[^.]+$/, '').replace(/[-_]+/g, ' ');
+            const empty = siteData.sponsors.find(sp=>!sp.src);   // isi slot kosong dulu
+            if(empty){ empty.src = src; empty.name = name; } else siteData.sponsors.push({name, src});
+          }
+        } catch(err){ showToast(`Gagal membaca ${f.name}`); }
+      }
+      refresh(kind);
+    }
+
+    panel.addEventListener('click', e=>{
+      const rp = e.target.closest('[data-rm-photo]'), rs = e.target.closest('[data-rm-sp]');
+      if(rp){ siteData.photos.splice(+rp.dataset.rmPhoto, 1); refresh('photos'); }
+      if(rs){ siteData.sponsors.splice(+rs.dataset.rmSp, 1); refresh('sponsors'); }
+      if(e.target.closest('.ad-x')) panel.hidden = true;
+      if(e.target.closest('#adDownload')) downloadHtml();
+    });
+    panel.addEventListener('input', e=>{
+      const n = e.target.closest('[data-name]');
+      if(n){ siteData.sponsors[+n.dataset.name].name = n.value; renderSponsors(); }
+    });
+    [['inPhotos','dropPhotos','photos'], ['inSponsors','dropSponsors','sponsors']].forEach(([inp, drop, kind])=>{
+      byId(inp).addEventListener('change', e=>{ addFiles(e.target.files, kind); e.target.value = ''; });
+      const z = byId(drop);
+      z.addEventListener('dragover', e=>{ e.preventDefault(); z.classList.add('over'); });
+      z.addEventListener('dragleave', ()=>z.classList.remove('over'));
+      z.addEventListener('drop', e=>{ e.preventDefault(); z.classList.remove('over'); addFiles(e.dataTransfer.files, kind); });
+    });
+    renderLists();
+  }
+  function maybeAdmin(){
+    if(!/admin/.test(location.hash + location.search)) return;
+    const p = byId('adminPanel');
+    if(p) p.hidden = false; else initAdmin();
+  }
+
+  renderHero();
+  renderSponsors();
+  maybeAdmin();
+  addEventListener('hashchange', maybeAdmin);
 </script>
-</body>
+</body><iframe>
 </html>
